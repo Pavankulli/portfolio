@@ -400,7 +400,7 @@
     /* ─── FOOTER ─── */
     footer {
       margin: 0 48px;
-      padding: 32px 0 48px;
+      padding: 32px 0 96px;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
@@ -413,6 +413,36 @@
       text-decoration: none;
     }
     footer a:hover { color: var(--text); }
+
+    /* ─── BOTTOM NAV ─── */
+    .bottom-nav {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      border-radius: 40px;
+      padding: 12px 32px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      z-index: 200;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .bottom-nav-item {
+      color: #fff;
+      opacity: 0.6;
+      transition: opacity 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .bottom-nav-item:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+    .bottom-nav-item.active { opacity: 1; }
 
     /* ─── TABLET (≤900px) ─── */
     @media (max-width: 900px) {
@@ -637,6 +667,22 @@
 
     </div>
   </section>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <a href="#hero" class="bottom-nav-item" title="Home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    </a>
+    <a href="#about" class="bottom-nav-item" title="About">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+    </a>
+    <a href="#projects" class="bottom-nav-item" title="Projects">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+    </a>
+    <a href="#contact" class="bottom-nav-item" title="Contact">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    </a>
+  </nav>
 
   <!-- FOOTER / CONTACT -->
   <footer id="contact">
