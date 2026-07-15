@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pavan Kulli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ECEAE6;
+      --card: #E3E0DB;
+      --border: #D5D1CB;
+      --text: #0f0f0f;
+      --muted: #7a7672;
+      --accent: #0f0f0f;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text);
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-menu a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-menu a:hover { color: var(--text); }
+    .nav-btn {
+      background: var(--text);
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      letter-spacing: 0.3px;
+    }
+    .nav-btn span { font-size: 15px; line-height: 1; }
+
+    /* ─── HERO ─── */
+    #hero {
+      display: grid;
+      grid-template-columns: 1fr auto 220px;
+      gap: 0 40px;
+      padding: 64px 48px 48px;
+      min-height: 80vh;
+      align-items: center;
+    }
+    .hero-left {}
+    .hero-greeting {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 6.5vw, 88px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 800;
+    }
+    .hero-sub {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 280px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--text);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+    .hero-cta:hover { opacity: 0.8; }
+    .cta-arrow {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* Profile photo */
+    .hero-photo {
+      width: 280px;
+      height: 340px;
+      border-radius: 160px;
+      background: var(--card);
+      border: 2px dashed var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+    .photo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px dashed var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    /* Stats */
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding-top: 8px;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+
+    /* ─── SERVICES ─── */
+    #services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 0 48px;
+    }
+    .service-item {
+      padding: 28px 28px;
+      border-right: 1px solid var(--border);
+    }
+    .service-item:last-child { border-right: none; }
+    .service-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .service-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding: 96px 48px;
+    }
+    .about-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 54px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+    .about-right {}
+    .about-lead {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .about-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    #experience {
+      padding: 0 48px 96px;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+      border-top: 1px solid var(--border);
+      padding-top: 48px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+    .section-sub {
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 280px;
+      text-align: right;
+      line-height: 1.6;
+    }
+    .exp-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .exp-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 1fr;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .exp-date {
+      font-size: 12px;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+    .exp-role {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .exp-company {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .exp-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects {
+      padding: 0 48px 96px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .project-card {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .project-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+    }
+    .project-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 1;
+    }
+    .img-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      border: 1.5px dashed var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .project-info {
+      padding: 20px 24px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+    .project-tag {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+    .project-year {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      margin: 0 48px;
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--text); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      #hero { grid-template-columns: 1fr; padding: 48px 24px; gap: 40px; }
+      .hero-photo { width: 200px; height: 240px; margin: 0 auto; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 20px; }
+      #services { grid-template-columns: 1fr 1fr; margin: 0 24px; }
+      .service-item:nth-child(2) { border-right: none; }
+      .service-item:nth-child(3) { border-right: none; }
+      #about { grid-template-columns: 1fr; gap: 32px; padding: 64px 24px; }
+      #experience, #projects { padding: 0 24px 64px; }
+      .exp-row { grid-template-columns: 1fr; gap: 8px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      footer { margin: 0 24px; }
+      .nav-menu { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-dot"></div>
+      Pavan Kulli
+    </div>
+    <div class="nav-menu">
+      <a href="#about">About</a>
+      <a href="#experience">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      Menu <span>≡</span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-greeting">Hey, I'm Pavan,</p>
+      <h1 class="hero-title">
+        A Full-Stack<br />
+        <em>&amp; DevOps</em><br />
+        Developer
+      </h1>
+      <p class="hero-sub">
+        Building scalable web applications and automating deployments. Passionate about clean code, security, and shipping products that work.
+      </p>
+      <a class="hero-cta" href="mailto:pavankulli6868@gmail.com">
+        Contact Me <span class="cta-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- PHOTO -->
+    <div class="hero-photo" id="profile-photo">
+      <img src="profile.jpg" alt="Pavan Kulli" />
+    </div>
+
+    <!-- STATS -->
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Years Learning</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Internships</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">BE</div>
+        <div class="stat-label">Computer Science</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <div id="services">
+    <div class="service-item">
+      <div class="service-title">Full-Stack Development</div>
+      <div class="service-desc">End-to-end web apps with modern frontend and backend technologies.</div>
+    </div>
+    <div class="service-item">
+      <div class="service-title">DevOps</div>
+      <div class="service-desc">CI/CD pipelines, containerization, and deployment automation.</div>
+    </div>
+
+    <div class="service-item">
+      <div class="service-title">Version Control</div>
+      <div class="service-desc">Git-based workflows, branching strategies, and collaborative development.</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-heading">
+      Building<br />Meaningful<br />& Scalable<br />Experiences
+    </div>
+    <div class="about-right">
+      <p class="about-lead">
+        Hey, I'm Pavan — a Full-Stack Developer and DevOps enthusiast from Bangalore, India.
+      </p>
+      <p class="about-body">
+        I graduated with a B.E. in Computer Science from S G Balekundri Institute of Technology in 2025. I'm currently working as a Software Developer Intern at StarterYou, building web applications for a US-based startup. I also bring hands-on experience in cybersecurity from my time at Eyesec Cyber Security Solutions. I care about writing clean, maintainable code and building systems that are secure and reliable.
+      </p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-sub">Building real-world software across development and security.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-row">
+        <div class="exp-date">Oct 2025 – Present</div>
+        <div>
+          <div class="exp-role">Software Developer Intern</div>
+          <div class="exp-company">StarterYou · New York, US (Remote)</div>
+        </div>
+        <div class="exp-desc">
+          Contributing to full-stack web applications as part of the core engineering team. Working with modern technologies to deliver impactful product features.
+        </div>
+      </div>
+      <div class="exp-row">
+        <div class="exp-date">Oct 2023 – Nov 2023</div>
+        <div>
+          <div class="exp-role">Cyber Security Engineer</div>
+          <div class="exp-company">Eyesec Cyber Security Solutions · Belagavi, India</div>
+        </div>
+        <div class="exp-desc">
+          Conducted security assessments and worked on threat analysis. Gained practical exposure to vulnerability scanning and defensive security practices.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">Explore my recent work — add your projects here.</p>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-placeholder">
+            <div class="img-icon">🖼</div>
+            <span>Project Image</span>
+          </div>
+        </div>
+        <div class="project-info">
+          <div>
+            <div class="project-name">DevPulse</div>
+            <div class="project-tag">DevOps · AI · Slack Bot</div>
+          </div>
+          <div class="project-year">2025</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-placeholder">
+            <div class="img-icon">🖼</div>
+            <span>Project Image</span>
+          </div>
+        </div>
+        <div class="project-info">
+          <div>
+            <div class="project-name">Second Brain</div>
+            <div class="project-tag">Full-Stack · RAG · Local AI</div>
+          </div>
+          <div class="project-year">2025</div>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;">Get in touch</div>
+      <a href="mailto:pavankulli6868@gmail.com" style="font-size:15px;font-weight:600;color:var(--text);text-decoration:none;">pavankulli6868@gmail.com</a>
+    </div>
+    <div style="display:flex;gap:24px;align-items:center;">
+      <a href="https://www.linkedin.com/in/pavan-kulli" target="_blank">LinkedIn</a>
+      <span>Bangalore, India</span>
+      <span>© 2025 Pavan Kulli</span>
+    </div>
+  </footer>
+
+</body>
+</html>
